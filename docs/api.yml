@@ -91,6 +91,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
+  /books/topics:
+    put:
+      tags:
+        - Books
+      summary: Associating books to topics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookId:
+                  type: string
+                topicId:
+                  type: integer
+      responses:
+        200:
+          description: The updated books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
     
   '/authors':
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
@@ -159,7 +184,7 @@ components:
     Book:
       type: object
       properties:
-        id:
+        bookId:
           type: string
         bookName:
           type: string
@@ -192,7 +217,7 @@ components:
     Topic:
       type: object
       properties:
-        id:
-          type: string
+        topicId:
+          type: integer
         topicName:
           type: string
