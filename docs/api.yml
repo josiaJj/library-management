@@ -68,7 +68,7 @@ paths:
   '/books/{bookId}/topic/{topicId}':
     put:
       tags:
-        - Books
+        - Topics
       summary: Assigning a topic to a book
       operationId: assignTopitToBook
       parameters:
@@ -94,7 +94,7 @@ paths:
   /books/topics:
     put:
       tags:
-        - Books
+        - Topics
       summary: Associating books to topics
       requestBody:
         required: true
@@ -210,10 +210,12 @@ components:
         name:
           type: string
         sex:
-          type: string
-          enum:
-            - M
-            - F
+          $ref: '#/components/schemas/Author'
+    sex:
+      type: string
+        enum:
+          - M
+          - F
     Topic:
       type: object
       properties:
