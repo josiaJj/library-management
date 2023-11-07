@@ -61,7 +61,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Book'
-  /authors:
+  '/authors':
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
       summary: Get all authors
@@ -98,7 +98,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Author'
-    delete:
+  '/authors/delete/{authorId}/':
+    delete:  
       summary: Delete an author by his ID
       operationId: deleteAuthor
       parameters:
@@ -108,6 +109,13 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: The author has been deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
                   
 components:
   schemas:
