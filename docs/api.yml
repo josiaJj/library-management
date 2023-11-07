@@ -65,6 +65,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Book'
+  '/books/{bookId}/topic/{topicId}':
+    put:
+      tags:
+        - Books
+      summary: Assigning a topic to a book
+      operationId: assignTopitToBook
+      parameters:
+        - in: path
+          name: bookId
+          description: ID of the book
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: topicId
+          description: ID of the topic
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: topic assigned to a book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+    
   '/authors':
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
