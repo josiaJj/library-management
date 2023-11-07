@@ -189,3 +189,10 @@ components:
           enum:
             - M
             - F
+    Topic:
+      type: object
+      properties:
+        id:
+          type: string
+        topicName:
+          type: string
