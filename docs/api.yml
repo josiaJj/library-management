@@ -215,11 +215,17 @@ components:
         - M
         - F
     Topic:
-      type: string
-      enum:
-        - ROMANCE
-        - COMEDY
-        - OTHER
+      type: object
+      properties:
+        id:
+          type: integer
+        topicName:
+          type: 
+            string
+          enum:
+            - ROMANCE
+            - COMEDY
+            - OTHER
         
 # 2-b-i UpdateBookAuthor possède uniquement l’identifiant de CrupdateBook et l’identifiant de Author car il ne se concentre pas sur la modification des autres détails des livres ou des auteurs. Par conséquent, seuls les identifiants (bookId et authorId) sont nécessaires pour effectuer cette opération.
 
