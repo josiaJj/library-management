@@ -81,14 +81,35 @@ paths:
                   $ref: '#/components/schemas/Book'
   '/topics':
     get:
-      summary: Get all topics
-      description: Get a list of all topics.
-      operationId: getTopics
+      summary: Get all topics with pagination and filtering
+      description: Get a list of all topics with pagination and filtering.
+      operationId: getTopicsWithPagination
       tags:
         - Topics
+      parameters:
+        - in: query
+          name: page
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: pageSize
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            default: 50
+        - in: query
+          name: topicName
+          description: Filter topics by name
+          required: false
+          schema:
+            type: string
       responses:
         200:
-          description: The list of topics
+          description: The list of filtered topics with pagination
           content:
             application/json:
               schema:
