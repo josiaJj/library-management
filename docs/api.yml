@@ -98,7 +98,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Author'
-    delete:
+    'delete/author/{authorId}':
       summary: Delete an author by his ID
       operationId: deleteAuthor
       parameters:
@@ -108,7 +108,13 @@ paths:
           required: true
           schema:
             type: string
-                  
+      responses:
+        200:
+          description: The author has been deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'    
 components:
   schemas:
     Book:
@@ -137,10 +143,11 @@ components:
       properties:
         id:
           type: string
-        name:
+        authorName:
           type: string
-        sex:
-          type: string
-          enum:
-            - M
-            - F
+          $ref: '#/components/schemas/Sex'
+    Sex:
+      type: string
+      enum:
+        - M
+        - F
