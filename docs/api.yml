@@ -112,6 +112,26 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/Topic'
+  '/topics/delete/{topicId}':
+    delete:
+      summary: Delete a topic by ID
+      operationId: deleteTopic
+      tags:
+        - Topics
+      parameters:
+        - in: path
+          name: topicId
+          description: ID of the topic to delete
+          required: true
+          schema:
+            $ref: '#/components/schemas/Topic'
+      responses:
+        200:
+          description: The topic has been deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
