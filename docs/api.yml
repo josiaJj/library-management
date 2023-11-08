@@ -91,6 +91,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
+  /books/authors:
+  #2-b-i : Car Crupdatebook hérite déjà de Book
+    put:
+      summary: Update books and authors by theur IDs
+      operationId: UpdateBookAuthor
   /books/topics:
     put:
       tags:
