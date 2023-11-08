@@ -35,6 +35,20 @@ paths:
           schema:
             type: string
             format: date
+        - in: query
+          name: page
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: pageSize
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            default: 50
       responses:
         200:
           description: The list of filtered books
@@ -173,3 +187,7 @@ components:
       enum:
         - M
         - F
+        
+# 2-b-i UpdateBookAuthor possède uniquement l’identifiant de CrupdateBook et l’identifiant de Author car il ne se concentre pas sur la modification des autres détails des livres ou des auteurs. Par conséquent, seuls les identifiants (bookId et authorId) sont nécessaires pour effectuer cette opération.
+
+# 2-b-ii UpdateBookAuthor devrait inclure les propriétés de CrupdateBook et de Author quand il nécessite des mises à jours des détails des livres (bookName, pageNumbers, topic, ...) ou des auteurs (authorName, Sex, etc.) en plus de la mise à jour de la relation entre eux.
