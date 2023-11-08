@@ -103,6 +103,37 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+    '/authors/{page}/{pageSize}':
+      get:
+        summary: Get all authors with pagination
+        description: Get a list of authors with pagination or filter by name.
+        operationId: getAuthorsWithPagination
+        tags:
+          - Authors
+        parameters:
+          - in: path
+            name: page
+            description: Page number
+            required: false
+            schema:
+              type: integer
+              default: 1
+          - in: path
+            name: pageSize
+            description: Number of items per page
+            required: false
+            schema:
+              type: integer
+              default: 50
+        responses:
+          200:
+            description: The list of [filtered] authors with pagination
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Author'
     put:
       summary: Create or update an author
       operationId: crupdateAuthor
