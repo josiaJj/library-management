@@ -153,6 +153,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Topic'
+  '/authorsTopics':
+    get:
+      summary: Get a list of AuthorTopics
+      description: Get a list of AuthorTopics with optional author ID and author name filters.
+      operationId: getAuthorsTopics
+      tags:
+        - Authors
+        - Topics
+      parameters:
+        - in: query
+          name: authorId
+          description: Filter by author ID
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: authorName
+          description: Filter by author name
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: authorSex
+          description: Filter by author sex (M or F)
+          required: false
+          schema:
+            $ref: '#/components/schemas/Sex'
+      responses:
+        200:
+          description: The list of AuthorTopics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthorTopic'
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
@@ -300,6 +336,13 @@ components:
             - ROMANCE
             - COMEDY
             - OTHER
+    AuthorTopic:
+      allOf:
+        - $ref: '#/components/schemas/Topic'
+        - type: object
+          properties:
+            author:
+              $ref: '#/components/schemas/Author'
         
 # 2-b-i UpdateBookAuthor possède uniquement l’identifiant de CrupdateBook et l’identifiant de Author car il ne se concentre pas sur la modification des autres détails des livres ou des auteurs. Par conséquent, seuls les identifiants (bookId et authorId) sont nécessaires pour effectuer cette opération.
 
