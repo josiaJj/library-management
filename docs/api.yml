@@ -79,6 +79,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Book'
+  '/topics':
+    get:
+      summary: Get all topics
+      description: Get a list of all topics.
+      operationId: getTopics
+      tags:
+        - Topics
+      responses:
+        200:
+          description: The list of topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
