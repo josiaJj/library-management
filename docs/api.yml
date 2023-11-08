@@ -6,7 +6,7 @@ info:
 servers:
   - url: https://library.com
 paths:
-  /books:
+  '/books':
     get:
       summary: Get all books
       description: The returned books are ordered by updated datetime.
@@ -108,9 +108,9 @@ paths:
             application/json:
               schema:
                 type: array
-              items:
-                $ref: '#/components/schemas/Author'
-  'authors/delete/{authorId}':
+                items:
+                  $ref: '#/components/schemas/Author'
+  '/authors/delete/{authorId}':
     delete:
       summary: Delete an author by his ID
       operationId: deleteAuthor
