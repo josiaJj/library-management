@@ -95,6 +95,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Topic'
+    put:
+        summary: Create or update a topic
+        operationId: crupdateTopic
+        tags:
+          - Topics
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+        responses:
+          200:
+            description: The topic has been created or updated
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Topic'
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
