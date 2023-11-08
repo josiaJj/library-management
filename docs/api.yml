@@ -178,6 +178,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Author'
+  #TD2 : Question dans la video [16:42]
+  '/author/delete-multiple':
+  delete:
+    tags:
+      - Authors
+    summary: Delete multiple authors by their IDs
+    operationId: deleteMultipleAuthors
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+    responses:
+      200:
+        description: The authors have been deleted
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Author'
+
                   
 components:
   schemas:
