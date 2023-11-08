@@ -309,7 +309,8 @@ components:
           properties:
             author:
               $ref: '#/components/schemas/Author'
-
+      topic:
+        $ref: '#/components/schemas/Topic'
     Author:
       type: object
       properties:
