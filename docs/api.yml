@@ -343,7 +343,3 @@ components:
           properties:
             author:
               $ref: '#/components/schemas/Author'
-        
-# 2-b-i UpdateBookAuthor possède uniquement l’identifiant de CrupdateBook et l’identifiant de Author car il ne se concentre pas sur la modification des autres détails des livres ou des auteurs. Par conséquent, seuls les identifiants (bookId et authorId) sont nécessaires pour effectuer cette opération.
-
-# 2-b-ii UpdateBookAuthor devrait inclure les propriétés de CrupdateBook et de Author quand il nécessite des mises à jours des détails des livres (bookName, pageNumbers, topic, ...) ou des auteurs (authorName, Sex, etc.) en plus de la mise à jour de la relation entre eux.
