@@ -103,37 +103,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
-    '/authors/{page}/{pageSize}':
-      get:
-        summary: Get all authors with pagination
-        description: Get a list of authors with pagination or filter by name.
-        operationId: getAuthorsWithPagination
-        tags:
-          - Authors
-        parameters:
-          - in: path
-            name: page
-            description: Page number
-            required: false
-            schema:
-              type: integer
-              default: 1
-          - in: path
-            name: pageSize
-            description: Number of items per page
-            required: false
-            schema:
-              type: integer
-              default: 50
-        responses:
-          200:
-            description: The list of [filtered] authors with pagination
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Author'
     put:
       summary: Create or update an author
       operationId: crupdateAuthor
@@ -155,6 +124,37 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+  '/authors/{page}/{pageSize}':
+      get:
+        summary: Get all authors with pagination
+        description: Get a list of authors with pagination or filter by name.
+        operationId: getAuthorsWithPagination
+        tags:
+          - Authors
+        parameters:
+          - in: path
+            name: page
+            description: Page number
+            required: true
+            schema:
+              type: integer
+              default: 1
+          - in: path
+            name: pageSize
+            description: Number of items per page
+            required: true
+            schema:
+              type: integer
+              default: 50
+        responses:
+          200:
+            description: The list of [filtered] authors with pagination
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Author'
   '/authors/delete/{authorId}':
     delete:
       summary: Delete an author by his ID
@@ -187,11 +187,7 @@ components:
         pageNumbers:
           type: integer
         topic:
-          type: string
-          enum:
-            - ROMANCE
-            - COMEDY
-            - OTHER
+          $ref: '#/components/schemas/Topic'
         releaseDate:
           type: string
           format: date
@@ -218,3 +214,13 @@ components:
       enum:
         - M
         - F
+    Topic:
+      type: string
+      enum:
+        - ROMANCE
+        - COMEDY
+        - OTHER
+        
+# 2-b-i UpdateBookAuthor possède uniquement l’identifiant de CrupdateBook et l’identifiant de Author car il ne se concentre pas sur la modification des autres détails des livres ou des auteurs. Par conséquent, seuls les identifiants (bookId et authorId) sont nécessaires pour effectuer cette opération.
+
+# 2-b-ii UpdateBookAuthor devrait inclure les propriétés de CrupdateBook et de Author quand il nécessite des mises à jours des détails des livres (bookName, pageNumbers, topic, ...) ou des auteurs (authorName, Sex, etc.) en plus de la mise à jour de la relation entre eux.
