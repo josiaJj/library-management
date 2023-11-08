@@ -11,6 +11,8 @@ paths:
       summary: Get all books
       description: The returned books are ordered by updated datetime.
       operationId: getBooks
+      tags:
+        - Books
       parameters:
         - in: query
           name: bookName
@@ -45,6 +47,8 @@ paths:
     put:
       summary: Create or update a list of books
       operationId: crupdateBooks
+      tags:
+        - Books
       requestBody:
         content:
           application/json:
@@ -67,6 +71,8 @@ paths:
       summary: Get all authors
       description: Get a list of all authors or filter by name.
       operationId: getAuthors
+      tags:
+        - Authors
       parameters:
         - in: query
           name: authorName
@@ -86,6 +92,8 @@ paths:
     put:
       summary: Create or update an author
       operationId: crupdateAuthor
+      tags:
+        - Authors
       requestBody:
         content:
           application/json:
@@ -106,6 +114,8 @@ paths:
     delete:
       summary: Delete an author by his ID
       operationId: deleteAuthor
+      tags:
+        - Authors
       parameters:
         - in: path
           name: authorId
