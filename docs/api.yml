@@ -230,20 +230,8 @@ paths:
       tags:
         - Authors
       parameters:
-        - in: path
-          name: page
-          description: Page number
-          required: true
-          schema:
-            type: integer
-            default: 1
-        - in: path
-          name: pageSize
-          description: Number of items per page
-          required: true
-          schema:
-            type: integer
-            default: 50
+        - $ref: '#/components/parameters/pathPagination-pageNumber'
+        - $ref: '#/components/parameters/pathPagination-pageSize'
       responses:
         200:
           description: The list of [filtered] authors with pagination
@@ -349,3 +337,20 @@ components:
       schema:
         type: integer
         default: 50
+    pathPagination-pageNumber:
+      in: path
+      name: pageNumber
+      description: Page number
+      required: true
+      schema:
+        type: integer
+        default: 1
+    pathPagination-pageSize:
+      in: path
+      name: pageSize
+      description: Number of items per page
+      required: true
+      schema:
+        type: integer
+        default: 50
+
