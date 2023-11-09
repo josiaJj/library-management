@@ -39,13 +39,13 @@ paths:
         - $ref: '#/components/parameters/queryPagination-pageSize'
       responses:
         200:
-          description: The list of filtered books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
     put:
       summary: Create or update a list of books
       operationId: crupdateBooks
@@ -60,13 +60,13 @@ paths:
                 $ref: '#/components/schemas/Book'
       responses:
         200:
-          description: The list of created or updated books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
   '/topics':
     get:
       summary: Get all topics with pagination and filtering
@@ -97,13 +97,13 @@ paths:
             type: string
       responses:
         200:
-          description: The list of filtered topics with pagination
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Topic'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
     put:
       summary: Create or update a topic
       operationId: crupdateTopic
@@ -116,11 +116,13 @@ paths:
               $ref: '#/components/schemas/Topic'
       responses:
         200:
-          description: The topic has been created or updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Topic'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
   '/topics/delete/{topicId}':
     delete:
       summary: Delete a topic by ID
@@ -136,11 +138,13 @@ paths:
             $ref: '#/components/schemas/Topic'
       responses:
         200:
-          description: The topic has been deleted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Topic'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
   '/authorsTopics':
     get:
       summary: Get a list of AuthorTopics
@@ -170,13 +174,13 @@ paths:
             $ref: '#/components/schemas/Sex'
       responses:
         200:
-          description: The list of AuthorTopics
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AuthorTopic'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
   /authors:
     #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
@@ -194,13 +198,13 @@ paths:
             type: string
       responses:
         200:
-          description: The list of [filtered] authors
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
     put:
       summary: Create or update an author
       operationId: crupdateAuthor
@@ -215,13 +219,13 @@ paths:
                 $ref: '#/components/schemas/Author'
       responses:
         200:
-          description: The author has been created or updated
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
   '/authors/{page}/{pageSize}':
     get:
       summary: Get all authors with pagination
@@ -234,13 +238,13 @@ paths:
         - $ref: '#/components/parameters/pathPagination-pageSize'
       responses:
         200:
-          description: The list of [filtered] authors with pagination
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
   '/authors/delete/{authorId}':
     delete:
       summary: Delete an author by his ID
@@ -256,11 +260,13 @@ paths:
             type: string
       responses:
         200:
-          description: The author has been deleted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Author'
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
 components:
   schemas:
     CrupdateBook:
@@ -344,6 +350,9 @@ components:
                 code:
                   type: integer
                   default: 200
+                message:
+                  type: string
+                  default:
 
     ApiResponse-400:
       allOf:
@@ -357,7 +366,7 @@ components:
                   type: integer
                   default: 400
 
-    Api403Response:
+    ApiResponse-403:
       allOf:
         - $ref: '#/components/schemas/ApiGeneralResponse'
         - type: object
@@ -369,7 +378,7 @@ components:
                     type: integer
                     default: 403
 
-    Api500Response:
+    ApiResponse-500:
       allOf:
         - $ref: '#/components/schemas/ApiGeneralResponse'
         - type: object
@@ -380,6 +389,12 @@ components:
                  code:
                    type: integer
                    default: 500
+    ApiResponses:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse-200'
+        - $ref: '#/components/schemas/ApiResponse-400'
+        - $ref: '#/components/schemas/ApiResponse-403'
+        - $ref: '#/components/schemas/ApiResponse-500'
 
   parameters:
     queryPagination-pageNumber:
