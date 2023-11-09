@@ -35,7 +35,8 @@ paths:
           schema:
             type: string
             format: date
-        - $ref: '#/components/parameters/queryPagination'
+        - $ref: '#/components/parameters/queryPagination-pageNumber'
+        - $ref: '#/components/parameters/queryPagination-pageSize'
       responses:
         200:
           description: The list of filtered books
@@ -104,22 +105,22 @@ paths:
                 items:
                   $ref: '#/components/schemas/Topic'
     put:
-        summary: Create or update a topic
-        operationId: crupdateTopic
-        tags:
-          - Topics
-        requestBody:
+      summary: Create or update a topic
+      operationId: crupdateTopic
+      tags:
+        - Topics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        200:
+          description: The topic has been created or updated
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Topic'
-        responses:
-          200:
-            description: The topic has been created or updated
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Topic'
   '/topics/delete/{topicId}':
     delete:
       summary: Delete a topic by ID
@@ -177,7 +178,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/AuthorTopic'
   /authors:
-  #TODO2: complete GET (can be filtered by name) - PUT - DELETE
+    #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
       summary: Get all authors
       description: Get a list of all authors or filter by name.
@@ -222,36 +223,36 @@ paths:
                 items:
                   $ref: '#/components/schemas/Author'
   '/authors/{page}/{pageSize}':
-      get:
-        summary: Get all authors with pagination
-        description: Get a list of authors with pagination or filter by name.
-        operationId: getAuthorsWithPagination
-        tags:
-          - Authors
-        parameters:
-          - in: path
-            name: page
-            description: Page number
-            required: true
-            schema:
-              type: integer
-              default: 1
-          - in: path
-            name: pageSize
-            description: Number of items per page
-            required: true
-            schema:
-              type: integer
-              default: 50
-        responses:
-          200:
-            description: The list of [filtered] authors with pagination
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Author'
+    get:
+      summary: Get all authors with pagination
+      description: Get a list of authors with pagination or filter by name.
+      operationId: getAuthorsWithPagination
+      tags:
+        - Authors
+      parameters:
+        - in: path
+          name: page
+          description: Page number
+          required: true
+          schema:
+            type: integer
+            default: 1
+        - in: path
+          name: pageSize
+          description: Number of items per page
+          required: true
+          schema:
+            type: integer
+            default: 50
+      responses:
+        200:
+          description: The list of [filtered] authors with pagination
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
   '/authors/delete/{authorId}':
     delete:
       summary: Delete an author by his ID
@@ -271,7 +272,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Author'    
+                $ref: '#/components/schemas/Author'
 components:
   schemas:
     CrupdateBook:
@@ -318,7 +319,7 @@ components:
         id:
           type: integer
         topicName:
-          type: 
+          type:
             string
           enum:
             - ROMANCE
@@ -332,18 +333,19 @@ components:
             author:
               $ref: '#/components/schemas/Author'
   parameters:
-    queryPagination:
-      - in: query
-        name: page
-        description: Page number
-        required: false
-        schema:
-          type: integer
-          default: 1
-      - in: query
-        name: pageSize
-        description: Number of items per page
-        required: false
-        schema:
-          type: integer
-          default: 50
+    queryPagination-pageNumber:
+      in: query
+      name: page
+      description: Page number
+      required: false
+      schema:
+        type: integer
+        default: 1
+    queryPagination-pageSize:
+      in: query
+      name: pageSize
+      description: Number of items per page
+      required: false
+      schema:
+        type: integer
+        default: 50
