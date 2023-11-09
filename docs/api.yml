@@ -290,6 +290,36 @@ paths:
           $ref: '#/components/schemas/ApiResponse-403'
         500:
           $ref: '#/components/schemas/ApiResponse-500'
+  '/authors/import':
+    post:
+      summary: Import authors
+      operationId: importAuthors
+      tags:
+        - Authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportAuthor'
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                excelFile:
+                  type: string
+                  format: binary
+              required:
+                - excelFile
+      responses:
+        200:
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
 components:
   schemas:
     CrupdateBook:
@@ -425,6 +455,9 @@ components:
         - $ref: '#/components/schemas/ApiResponse-400'
         - $ref: '#/components/schemas/ApiResponse-403'
         - $ref: '#/components/schemas/ApiResponse-500'
+    ImportBook:
+    ImportBookExcel:
+    ImportAuthor:
 
   parameters:
     queryPagination-pageNumber:
