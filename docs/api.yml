@@ -20,7 +20,6 @@ paths:
           required: false
           schema:
             type: string
-        #TODO3: add parameter to filter books by intervals of dates of the releaseDate
         - in: query
           name: releaseDateStart
           description: Filter books released after this date
@@ -273,11 +272,12 @@ paths:
       operationId: importBooks
       tags:
         - Books
-      RequestBody:
+      requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportBook'
+                $ref: '#/components/schemas/ImportBook'
           application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
             schema:
               type: string
@@ -298,6 +298,7 @@ paths:
       tags:
         - Authors
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -339,8 +340,8 @@ components:
           properties:
             author:
               $ref: '#/components/schemas/Author'
-      topic:
-        $ref: '#/components/schemas/Topic'
+            topic:
+              $ref: '#/components/schemas/Topic'
     Author:
       type: object
       properties:
@@ -391,6 +392,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/ApiGeneralResponse'
         - type: object
+          description: OK
           properties:
             status:
               type: object
@@ -406,6 +408,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/ApiGeneralResponse'
         - type: object
+          description: Bad request
           properties:
             status:
               type: object
@@ -420,6 +423,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/ApiGeneralResponse'
         - type: object
+          description: Forbidden
           properties:
             status:
               type: object
@@ -434,6 +438,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/ApiGeneralResponse'
         - type: object
+          description: Internal Server Error
           properties:
              status:
                type: object
