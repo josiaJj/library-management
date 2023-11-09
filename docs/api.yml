@@ -273,14 +273,15 @@ paths:
       operationId: importBooks
       tags:
         - Books
-      requestBody:
+      RequestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ImportBook'
           application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
             schema:
-              $ref: '#/components/schemas/ImportBookExcel'
+              type: string
+              format: binary
       responses:
         200:
           $ref: '#/components/schemas/ApiResponse-200'
@@ -297,20 +298,14 @@ paths:
       tags:
         - Authors
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ImportAuthor'
-          multipart/form-data:
+          application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
             schema:
-              type: object
-              properties:
-                excelFile:
-                  type: string
-                  format: binary
-              required:
-                - excelFile
+              type: string
+              format: binary
       responses:
         200:
           $ref: '#/components/schemas/ApiResponse-200'
@@ -455,9 +450,34 @@ components:
         - $ref: '#/components/schemas/ApiResponse-400'
         - $ref: '#/components/schemas/ApiResponse-403'
         - $ref: '#/components/schemas/ApiResponse-500'
-    ImportBook:
-    ImportBookExcel:
     ImportAuthor:
+      oneOf:
+        - $ref: '#/components/schemas/Author'
+        - type: object
+          properties:
+            authorName:
+              type: string
+            sex:
+              $ref: '#/components/schemas/Sex'
+
+    ImportBook:
+      oneOf:
+        - $ref: '#/components/schemas/Book'
+        - type: object
+          properties:
+            bookName:
+              type: string
+            author:
+              $ref: '#/components/schemas/Author'
+            pageNumbers:
+              type: integer
+            topic:
+              $ref: '#/components/schemas/Topic'
+            releaseDate:
+              type: string
+              format: date
+            idAuthor:
+              type: string
 
   parameters:
     queryPagination-pageNumber:
