@@ -267,6 +267,29 @@ paths:
           $ref: '#/components/schemas/ApiResponse-403'
         500:
           $ref: '#/components/schemas/ApiResponse-500'
+  '/books/import':
+    post:
+      summary: Import books from Excel or JSON
+      operationId: importBooks
+      tags:
+        - Books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportBook'
+          application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+            schema:
+              $ref: '#/components/schemas/ImportBookExcel'
+      responses:
+        200:
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
 components:
   schemas:
     CrupdateBook:
