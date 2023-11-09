@@ -320,6 +320,67 @@ components:
           properties:
             author:
               $ref: '#/components/schemas/Author'
+    ApiGeneralResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+        body:
+          type: object
+
+    ApiResponse-200:
+      allOf:
+        - $ref: '#/components/schemas/ApiGeneralResponse'
+        - type: object
+          properties:
+            status:
+              type: object
+              properties:
+                code:
+                  type: integer
+                  default: 200
+
+    ApiResponse-400:
+      allOf:
+        - $ref: '#/components/schemas/ApiGeneralResponse'
+        - type: object
+          properties:
+            status:
+              type: object
+              properties:
+                code:
+                  type: integer
+                  default: 400
+
+    Api403Response:
+      allOf:
+        - $ref: '#/components/schemas/ApiGeneralResponse'
+        - type: object
+          properties:
+            status:
+              type: object
+              properties:
+                  code:
+                    type: integer
+                    default: 403
+
+    Api500Response:
+      allOf:
+        - $ref: '#/components/schemas/ApiGeneralResponse'
+        - type: object
+          properties:
+             status:
+               type: object
+               properties:
+                 code:
+                   type: integer
+                   default: 500
+
   parameters:
     queryPagination-pageNumber:
       in: query
