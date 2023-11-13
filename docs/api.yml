@@ -5,6 +5,8 @@ info:
   description: STD22064
 servers:
   - url: https://library.com
+security:
+  - oauth2: ['read']
 paths:
   '/books':
     get:
