@@ -374,6 +374,28 @@ paths:
           $ref: '#/components/schemas/ApiResponse-403'
         500:
           $ref: '#/components/schemas/ApiResponse-500'
+  '/books/return/{bookId}':
+    post:
+      summary: Return a book
+      operationId: returnBook
+      tags:
+        - Books
+      parameters:
+        - in: path
+          name: bookId
+          description: ID of the book to return
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
 components:
   schemas:
     CrupdateBook:
