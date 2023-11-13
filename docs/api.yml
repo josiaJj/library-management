@@ -666,6 +666,15 @@ components:
           type: string
         reference:
           type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: 'https://x-auth-server/token'
+          scopes:
+            read: Read access
+            write: Write access
 
   parameters:
     queryPagination-pageNumber:
