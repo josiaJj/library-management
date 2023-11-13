@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.1.0
+  version: 1.4.0
   description: STD22064
 servers:
   - url: https://library.com
@@ -343,6 +343,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Visitor'
+      responses:
+        200:
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
+  '/books/borrow/{bookId}':
+    post:
+      summary: Borrow a book
+      operationId: borrowBook
+      tags:
+        - Books
+      parameters:
+        - in: path
+          name: bookId
+          description: ID of the book to borrow
+          required: true
+          schema:
+            type: string
       responses:
         200:
           $ref: '#/components/schemas/ApiResponse-200'
