@@ -426,6 +426,56 @@ paths:
           $ref: '#/components/schemas/ApiResponse-403'
         500:
           $ref: '#/components/schemas/ApiResponse-500'
+  '/visitors/{visitorId}/activities':
+    get:
+      summary: Get visitor activities
+      operationId: getVisitorActivities
+      tags:
+        - Visitors
+      parameters:
+        - in: path
+          name: visitorId
+          description: ID of the visitor
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: startDate
+          description: Start date for filtering activities
+          required: false
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: endDate
+          description: End date for filtering activities
+          required: false
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: startTime
+          description: Start time for filtering activities
+          required: false
+          schema:
+            type: string
+            format: time
+        - in: query
+          name: endTime
+          description: End time for filtering activities
+          required: false
+          schema:
+            type: string
+            format: time
+      responses:
+        200:
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
 components:
   schemas:
     CrupdateBook:
