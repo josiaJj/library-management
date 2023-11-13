@@ -316,6 +316,42 @@ paths:
           $ref: '#/components/schemas/ApiResponse-403'
         500:
           $ref: '#/components/schemas/ApiResponse-500'
+
+  '/visitors':
+    get:
+      summary: Get all visitors
+      description: Get a list of all visitors.
+      operationId: getVisitors
+      tags:
+        - Visitors
+      responses:
+        200:
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
+    put:
+      summary: Create or update a visitor
+      operationId: crupdateVisitor
+      tags:
+        - Visitors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visitor'
+      responses:
+        200:
+          $ref: '#/components/schemas/ApiResponse-200'
+        400:
+          $ref: '#/components/schemas/ApiResponse-400'
+        403:
+          $ref: '#/components/schemas/ApiResponse-403'
+        500:
+          $ref: '#/components/schemas/ApiResponse-500'
 components:
   schemas:
     CrupdateBook:
